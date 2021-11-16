@@ -1,2 +1,2 @@
-# ACQRPT5_BaT
+# ACQRPT5-BaT
 BaT Solo Capstone
