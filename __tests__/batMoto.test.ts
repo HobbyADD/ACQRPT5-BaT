@@ -46,7 +46,7 @@ test("Search for Motorcycle", async () => {
     let typeInputField = await driver.findElement(searchInputField);
     
     await clickMagGlassBtn.click();
-    await typeInputField.sendKeys('honda motorcycle\n');
+    await typeInputField.sendKeys('motorcycle\n');
 
     let autoSearchResult = By.xpath('(//img[@class="featured-listing-image wp-post-image"])[2]');
     let clickAutoSrchRslt = await driver.findElement(autoSearchResult);
@@ -77,7 +77,7 @@ test("Enclosed Shipping Quote Returned", async () => {
 
 
 test("Open Shipping Quote should not be returned", async () => {
-    //this tests to verify that an open transit shipping option is not available on a motorcycle.
+    //this tests to verify that an open transit shipping option is not available.
     try {
         await driver.findElement(By.xpath('(//span[@class="quote-name"])[contains(text(),"Open Transit")]'))
     }
