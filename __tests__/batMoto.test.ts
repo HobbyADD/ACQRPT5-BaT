@@ -1,11 +1,10 @@
 
 //this tests a motorcycle is found and the shipping returned is only enclosed
+
 import { Builder, Capabilities, By, until, WebElement, WebDriver, Actions } from "selenium-webdriver";
 import { urlIs } from "selenium-webdriver/lib/until";
-import { collapseTextChangeRangesAcrossMultipleVersions, getParsedCommandLineOfConfigFile, isAssertionExpression, WatchDirectoryFlags } from "typescript";
-//import { BatPages } from "./pageObjects/BatPages";
 
-//pulling this from the getParsedCommandLineOfConfigFile.ttest.ts 
+//pulling this from the getParsedCommandLineOfConfigFile.test.ts 
 //file that Andrew created at the end of module 2.4 lecture video
 
 //this first line is making sure we can use the chormedriver
@@ -39,6 +38,7 @@ test("Verify page loaded", async () => {
 
 })
 
+//this does a search for motorcycle and then clicks into it
 test("Search for Motorcycle", async () => {
     let magnifyGlassBtn = By.css('.search-open');
     let clickMagGlassBtn = await driver.findElement(magnifyGlassBtn);
@@ -54,6 +54,8 @@ test("Search for Motorcycle", async () => {
 
 })
 
+
+//test to verify shipping quote can be returned
 test("Get Shipping Quotes", async () => {
     let shippingTextField = By.css('#shipping-postal');
     let shipTextInput = await driver.findElement(shippingTextField);
@@ -66,6 +68,7 @@ test("Get Shipping Quotes", async () => {
     
 })
 
+//verify an open shipping quote is found
 test("Enclosed Shipping Quote Returned", async () => {
    
     await driver.wait(until.elementLocated(By.xpath('(//span[@class="quote-name"])[contains(text(),"Enclosed Transit")]')))
@@ -84,10 +87,7 @@ test("Open Shipping Quote should not be returned", async () => {
     catch {
         console.log('Element is not present')
     }
-    // let openTransitText = await driver.findElements(By.xpath('(//span[@class="quote-name"])[contains(text(),"Open Transit")]'));
-    // expect(openTransitText).toBeFalsy
-    
-        
+         
     // closes the browser
     driver.quit()
 })

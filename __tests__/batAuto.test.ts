@@ -1,9 +1,8 @@
 
 //this tests a specific car can be found and a shipping quote is available
+
 import { Builder, Capabilities, By, until } from "selenium-webdriver";
 import { urlIs } from "selenium-webdriver/lib/until";
-import { getParsedCommandLineOfConfigFile, WatchDirectoryFlags } from "typescript";
-//import { BatPages } from "./pageObjects/BatPages";
 
 
 //pulling this from the getParsedCommandLineOfConfigFile.test.ts 
@@ -38,9 +37,7 @@ test("Verify page loaded", async () => {
 
 })
 
-//commented out for not while i test json file
-//this does a search for NSX and then clicks into it
-
+//this does a search for given car and then clicks into it
 test("Search for Car", async () => {
     let magnifyGlassBtn = By.css('.search-open');
     let clickMagGlassBtn = await driver.findElement(magnifyGlassBtn);
@@ -58,7 +55,7 @@ test("Search for Car", async () => {
 
 
 
-
+//test to verify shipping quote can be returned
 test("Get Shipping Quotes", async () => {
     let shippingTextField = By.css('#shipping-postal');
     let shipTextInput = await driver.findElement(shippingTextField);
@@ -72,6 +69,7 @@ test("Get Shipping Quotes", async () => {
       
 })
 
+//verify an enclosed shipping quote is found
 test("Enclosed Shipping Quote Returned", async () => {
    
     await driver.wait(until.elementLocated(By.xpath('(//span[@class="quote-name"])[contains(text(),"Enclosed Transit")]')))
@@ -81,7 +79,7 @@ test("Enclosed Shipping Quote Returned", async () => {
     
 })
 
-
+//verify an open shipping quote is found
 test("Open Shipping Quote Returned", async () => {
     
     await driver.wait(until.elementLocated(By.xpath('(//span[@class="quote-name"])[contains(text(),"Open Transit")]')))
